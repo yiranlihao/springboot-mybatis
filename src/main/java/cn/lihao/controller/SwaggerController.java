@@ -3,6 +3,8 @@ package cn.lihao.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.lihao.common.ResponseResult;
+import com.wordnik.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,7 @@ import cn.lihao.model.User;
 
 @RestController
 @RequestMapping(value="/users")
+@Api(value = "SwaggerController", description="SwaggerController")
 public class SwaggerController {
 
 
@@ -25,9 +28,9 @@ public class SwaggerController {
      *
      * @return
      */
-    @ApiOperation(value="Get all users",notes="requires noting")
+    @ApiOperation(value="getUsers",notes="getUsers")
     @RequestMapping(method=RequestMethod.GET)
-    public List<User> getUsers(){
+    public ResponseResult<List<User>> getUsers(){
         List<User> list=new ArrayList<User>();
 
         User user=new User();
@@ -37,14 +40,14 @@ public class SwaggerController {
         User user2=new User();
         user.setName("world");
         list.add(user2);
-        return list;
+        return ResponseResult.newSuccess(list);
     }
 
-    @ApiOperation(value="Get user with id",notes="requires the id of user")
+    @ApiOperation(value="getUserById",notes="getUserById")
     @RequestMapping(value="/{name}",method=RequestMethod.GET)
-    public User getUserById(@PathVariable String name){
+    public ResponseResult<User> getUserById(@PathVariable String name){
         User user=new User();
-        user.setName("hello world");
-        return user;
+        user.setName(name);
+        return ResponseResult.newSuccess(user);
     }
 }

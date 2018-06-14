@@ -15,8 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableSwagger
 @EnableAutoConfiguration
-public class SwaggerConfig
-{
+public class SwaggerConfig {
 
     private SpringSwaggerConfig springSwaggerConfig;
 
@@ -24,7 +23,6 @@ public class SwaggerConfig
     public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
         this.springSwaggerConfig = springSwaggerConfig;
     }
-
 
     public SwaggerSpringMvcPlugin customImplementation(){
         return  new SwaggerSpringMvcPlugin(this.springSwaggerConfig)

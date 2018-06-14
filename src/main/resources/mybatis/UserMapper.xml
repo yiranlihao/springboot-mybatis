@@ -3,7 +3,7 @@
 <mapper namespace="cn.lihao.mapper.UserMapper">
  
   <select id="findUserInfo" resultType="cn.lihao.model.User">
-    select user_name as name, age,password from user_t;
+    select user_name as name, age,password from user_t limit 1;
   </select>
  
 </mapper>
